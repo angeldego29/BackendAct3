@@ -24,3 +24,14 @@ export const completeTask = (id) => {
     task.status = 'completed';
     return task;
 };
+// 🔴 Eliminar una tarea existente
+export const deleteTask = (id) => {
+    const index = tasks.findIndex((task) => task.id === id);
+    if (index === -1) {
+        throw new Error(`No existe una tarea con el id ${id}.`);
+    }
+    const [deleted] = tasks.splice(index, 1);
+    return deleted;
+};
+// 🔴 Listar solo tareas pendientes
+export const listPendingTasks = () => tasks.filter((task) => task.status === 'pending');
